@@ -1,6 +1,5 @@
 package org.wora.youquizz.content.application.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.wora.youquizz.content.application.dto.request.SubjectRequestDTO;
@@ -10,40 +9,33 @@ import org.wora.youquizz.content.application.service.SubjectService;
 import org.wora.youquizz.content.domain.entity.Subject;
 import org.wora.youquizz.content.domain.repository.SubjectRepository;
 
+
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class SubjectServiceImpl implements SubjectService {
+
     private final SubjectRepository subjectRepository;
     private final SubjectMapper subjectMapper;
 
-    @Override
-    public SubjectResponseDTO createSubject(SubjectRequestDTO requestDTO) {
-        Subject subject = subjectMapper.toEntity(requestDTO);
 
-        if (requestDTO.parentSubjectId() != null) {
-            Subject parentSubject = subjectRepository.findById(requestDTO.parentSubjectId())
-                    .orElseThrow(() -> new EntityNotFoundException("Parent subject not found"));
+    public SubjectResponseDTO createSubject(SubjectRequestDTO subjectRequestDTO) {
+        Subject subject = subjectMapper.toEntity(subjectRequestDTO);
 
-            subject.setParentSubject(parentSubject);
-
-            parentSubject.getSubSubjects().add(subject);
+        if (subjectRequestDTO.parentSubjectId() != null) {
+            Optional<Subject> parentSubject = subjectRepository.findById(subjectRequestDTO.parentSubjectId());
+            parentSubject.ifPresent(subject::setParentSubject);
         }
 
         Subject savedSubject = subjectRepository.save(subject);
 
-        return subjectMapper.toResponseDTO(savedSubject);
+        return subjectMapper.toDto(savedSubject);
     }
 
+    @Override
     public List<SubjectResponseDTO> getSubSubjects(Long subjectId) {
-        Subject subject = subjectRepository.findById(subjectId)
-                .orElseThrow(() -> new EntityNotFoundException("Subject not found"));
-
-        return subjectRepository.findByParentSubject(subject)
-                .stream()
-                .map(subjectMapper::toResponseDTO)
-                .collect(Collectors.toList());
+        return List.of();
     }
 }

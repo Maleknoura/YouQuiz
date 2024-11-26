@@ -1,7 +1,8 @@
 package org.wora.youquizz.content.application.dto.request;
 
 public record SubjectRequestDTO(
-        String title,
+        String name,
         Long parentSubjectId
+
 ) {
 }

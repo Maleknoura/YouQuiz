@@ -1,16 +1,28 @@
 package org.wora.youquizz.content.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Answer {
     @Id
-    private long id;
-    private String texteReponse;
-    private boolean estCorrect;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String text;
 
     @ManyToOne
+    @JoinColumn(name = "question_id")
     private Question question;
+
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnswerValidation> answerValidations;
+
+    @ManyToMany
+    @JoinTable(
+            name = "quiz_subject",
+            joinColumns = @JoinColumn(name = "quiz_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
+    private List<Subject> subjects;
 }

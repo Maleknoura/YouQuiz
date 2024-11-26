@@ -25,7 +25,7 @@ public class Question {
     private Level level;
 
     @OneToMany(mappedBy = "question")
-    private List<QuestionAnswer> questionAnswers;
+    private List<AnswerValidation> answerValidations;
 
     @OneToMany(mappedBy = "question")
     private List<QuizzQuestion> quizzQuestions;

@@ -1,28 +1,31 @@
 package org.wora.youquizz.quizz;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import org.wora.youquizz.content.domain.entity.AnswerValidation;
 import org.wora.youquizz.person.Entity.Student;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class QuizAssignement {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDateTime assignedAt;
+    private LocalDateTime completedAt;
+    private Double score;
 
     @ManyToOne
-    private Quiz quiz;
-
-    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 
-    private Integer numeroTentative;
-    private String raisonPassage;
-    private LocalDateTime datePassage;
-    private Double scoreTotal;
+    @ManyToOne
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
+
+    @OneToMany(mappedBy = "quizAssignment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnswerValidation> answerValidations;
 
 
 

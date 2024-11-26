@@ -4,8 +4,8 @@ import java.util.List;
 
 public record SubjectResponseDTO(
         Long id,
-        String title,
-        SubjectResponseDTO parentSubject,
-        List<SubjectResponseDTO> subSubjects
+        String name,
+        Long parentSubjectId,
+        List<Long> subSubjectIds
 ) {
 }

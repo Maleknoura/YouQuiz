@@ -1,9 +1,7 @@
 package org.wora.youquizz.quizz;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import org.mapstruct.ap.internal.model.GeneratedType;
 import org.wora.youquizz.content.domain.entity.Question;
 import org.wora.youquizz.content.domain.entity.Subject;
 import org.wora.youquizz.person.Entity.Teacher;
@@ -14,23 +12,26 @@ import java.util.List;
 @Entity
 public class Quiz {
     @Id
-    private long id;
-    private Double scoreReussite;
-    private Boolean droitVisualiserReponses;
-    private Boolean droitVoirResultatFinal;
-    private Integer nombreChances;
-    private String remarques;
-    private String consignes;
-    private LocalDateTime dateDebut;
-    private LocalDateTime dateFin;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String description;
+    private LocalDateTime createdAt;
 
     @ManyToOne
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @ManyToMany
-    private List<Question> questions;
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuizAssignement> quizAssignments;
 
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuizzQuestion> quizQuestions;
     @ManyToMany
+    @JoinTable(
+            name = "quiz_subject",
+            joinColumns = @JoinColumn(name = "quiz_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
     private List<Subject> subjects;
-
 }
