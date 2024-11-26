@@ -5,6 +5,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import org.wora.youquizz.content.enums.QuestionType;
+import org.wora.youquizz.quizz.Quiz;
+import org.wora.youquizz.quizz.QuizzQuestion;
 
 import java.util.List;
 
@@ -24,7 +26,9 @@ public class Question {
     private Level level;
 
     @OneToMany(mappedBy = "question")
-    private List<Answer> answers;
+    private List<QuestionAnswer> questionAnswers;
 
+    @OneToMany(mappedBy = "question")
+    private List<QuizzQuestion> quizzQuestions;
 
 }
