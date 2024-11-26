@@ -1,19 +1,16 @@
-package org.wora.youquizz.content.entity;
+package org.wora.youquizz.content.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class QuestionAnswer {
+public class Answer {
     @Id
     private long id;
+    private String texteReponse;
+    private boolean estCorrect;
 
     @ManyToOne
     private Question question;
-
-    @ManyToOne
-    private Answer answer;
-
-    private Boolean estCorrect;
 }

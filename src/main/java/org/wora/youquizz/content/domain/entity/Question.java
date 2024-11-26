@@ -1,11 +1,10 @@
-package org.wora.youquizz.content.entity;
+package org.wora.youquizz.content.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import org.wora.youquizz.content.enums.QuestionType;
-import org.wora.youquizz.quizz.Quiz;
+import org.wora.youquizz.content.domain.enums.QuestionType;
 import org.wora.youquizz.quizz.QuizzQuestion;
 
 import java.util.List;

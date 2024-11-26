@@ -1,4 +1,4 @@
-package org.wora.youquizz.content.entity;
+package org.wora.youquizz.content.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -4,8 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import org.wora.youquizz.content.entity.Question;
-import org.wora.youquizz.content.entity.Subject;
+import org.wora.youquizz.content.domain.entity.Question;
+import org.wora.youquizz.content.domain.entity.Subject;
 import org.wora.youquizz.person.Entity.Teacher;
 
 import java.time.LocalDateTime;

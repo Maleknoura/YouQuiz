@@ -3,7 +3,7 @@ package org.wora.youquizz.quizz;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import org.wora.youquizz.content.entity.Question;
+import org.wora.youquizz.content.domain.entity.Question;
 
 @Entity
 public class QuizzQuestion {
