@@ -3,7 +3,7 @@ package org.wora.youquizz.person.Entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import org.wora.youquizz.quizz.Quiz;
+import org.wora.youquizz.quizz.domain.entity.Quiz;
 
 import java.util.List;
 

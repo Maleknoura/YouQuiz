@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import org.wora.youquizz.content.domain.enums.QuestionType;
-import org.wora.youquizz.quizz.QuizzQuestion;
+import org.wora.youquizz.quizz.domain.entity.QuizzQuestion;
 
 import java.util.List;
 

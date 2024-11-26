@@ -1,7 +1,7 @@
 package org.wora.youquizz.content.domain.entity;
 
 import jakarta.persistence.*;
-import org.wora.youquizz.quizz.QuizAssignement;
+import org.wora.youquizz.quizz.domain.entity.QuizAssignement;
 
 @Entity
 public class AnswerValidation {

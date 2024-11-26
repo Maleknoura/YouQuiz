@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.wora.youquizz.quizz.Quiz;
+import org.wora.youquizz.quizz.domain.entity.Quiz;
 
 import java.util.List;
 
