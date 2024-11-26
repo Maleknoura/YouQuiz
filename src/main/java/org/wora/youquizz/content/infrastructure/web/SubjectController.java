@@ -20,8 +20,9 @@ public class SubjectController {
         return ResponseEntity.ok(subjectService.createSubject(requestDTO));
     }
 
-    @GetMapping("/{subjectId}/sub-subjects")
-    public ResponseEntity<List<SubjectResponseDTO>> getSubSubjects(@PathVariable Long subjectId) {
-        return ResponseEntity.ok(subjectService.getSubSubjects(subjectId));
+    @GetMapping
+    public ResponseEntity<List<SubjectResponseDTO>> getSubSubjects() {
+        return ResponseEntity.ok(subjectService.getSubSubjects());
     }
+
 }

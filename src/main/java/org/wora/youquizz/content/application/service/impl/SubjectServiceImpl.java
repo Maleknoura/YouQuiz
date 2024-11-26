@@ -12,6 +12,7 @@ import org.wora.youquizz.content.domain.repository.SubjectRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +36,11 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<SubjectResponseDTO> getSubSubjects(Long subjectId) {
-        return List.of();
+    public List<SubjectResponseDTO> getSubSubjects() {
+        List<Subject> subjects = subjectRepository.findAll();
+        return subjects.stream()
+                .map(subjectMapper::toDto)
+                .collect(Collectors.toList());
     }
+
 }

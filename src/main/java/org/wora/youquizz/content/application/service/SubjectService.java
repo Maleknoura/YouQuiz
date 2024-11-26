@@ -8,5 +8,5 @@ import java.util.List;
 public interface SubjectService {
     SubjectResponseDTO createSubject(SubjectRequestDTO requestDTO);
 
-    List<SubjectResponseDTO> getSubSubjects(Long subjectId);
+    List<SubjectResponseDTO> getSubSubjects();
 }
