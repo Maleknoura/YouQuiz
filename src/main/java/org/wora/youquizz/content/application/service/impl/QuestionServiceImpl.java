@@ -21,6 +21,7 @@ import org.wora.youquizz.quizz.domain.entity.QuizzQuestion;
 import org.wora.youquizz.quizz.domain.repository.QuizzRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -56,6 +57,12 @@ public class QuestionServiceImpl implements QuestionService {
         quizQuestionRepository.save(quizQuestion);
 
         return questionMapper.toDTO(question);
+    }
+    public List<QuestionResponseDTO> findAll() {
+        List<Question> questions = questionRepository.findAll();
+        return questions.stream()
+                .map(questionMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 }

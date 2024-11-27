@@ -3,6 +3,7 @@ package org.wora.youquizz.content.infrastructure.web;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.wora.youquizz.content.application.dto.request.QuestionRequestDTO;
 import org.wora.youquizz.content.application.dto.response.QuestionResponseDTO;
@@ -22,5 +23,9 @@ public class QuestionController {
         return questionService.createQuestionWithQuiz(dto);
     }
 
-
+    @GetMapping
+    public ResponseEntity<List<QuestionResponseDTO>> getAllQuestions() {
+        List<QuestionResponseDTO> questions = questionService.findAll();
+        return ResponseEntity.ok(questions);
+    }
 }
