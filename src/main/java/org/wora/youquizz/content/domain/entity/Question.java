@@ -1,20 +1,22 @@
 package org.wora.youquizz.content.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.wora.youquizz.content.domain.enums.QuestionType;
 import org.wora.youquizz.quizz.domain.entity.QuizzQuestion;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Question {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String texte;
-    private String media;
+    @Enumerated(EnumType.STRING)
     private QuestionType type;
     private Integer points;
 
@@ -22,6 +24,7 @@ public class Question {
     private Subject subject;
 
     @ManyToOne
+    @JoinColumn(name = "level_id")
     private Level level;
 
     @OneToMany(mappedBy = "question")
